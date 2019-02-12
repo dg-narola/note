@@ -1,0 +1,24 @@
+<div class="col-md-3" style="height: 1000px; overflow-y: scroll;">
+  <div class="container-fluid">
+    <%= link_to "New Note", new_note_path, remote: true, class: "btn btn-primary" %> <br><br>
+    <div class="new-note"></div>
+
+    <table class="table table-bordered table-stripped">
+      <thead>
+        <tr>
+          <th colspan="2"><center>Note</center></th>
+        </tr>
+      </thead>
+      <tbody class="note-index">
+        <%= render "side" %>
+      </tbody>
+    </table>
+    <div id="note-modal" class="modal fade"></div>
+  </div>
+</div>
+
+<div class="col-md-9">
+
+  <div id="edit-form"></div>
+  <div id="user-form"></div>
+</div>

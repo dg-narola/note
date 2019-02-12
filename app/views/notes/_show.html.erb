@@ -1,0 +1,31 @@
+<div class="pull-right">
+  <%= link_to "New Comment", new_note_comment_path(@note, @comment), remote: true , class: "btn btn-primary pull-right" %>
+</div>
+
+      <h3>Note</h3>
+
+      <p>
+        <strong>Title</strong>
+        <%= @note.title %>
+      </p>
+      <p>
+        <strong>Description</strong>
+        <%= @note.description %>
+      </p>
+      <div id="new-form" class="new-form"></div>
+      <div id="comm-form" class="comm-form"></div>
+      <h2>Comments</h2>
+      <%= render 'comments/index'%>
+      <div align="center" class="links">
+            <%= will_paginate @comments %>
+      </div>
+
+    <div class="modal-footer">
+      <%# link_to "Add comment", new_note_comment_path(@note),remote: true, class: "btn btn-primary" %>
+      <%= link_to "Cancel", notes_path(@note) , class: "btn btn-default", data: { dismiss: "modal" } %>
+    </div>
+    <script type="text/javascript">
+     $(function(){
+        $('.links a').attr('data-remote', 'true')
+      });
+   </script>

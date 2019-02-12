@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notedemo</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+</head>
+
+<body>
+  <!--<h1 style="color:blue" align="center">Notes</h1>-->
+  <% if user_signed_in? %>
+  <%= render "devise/shared/navigation" %>
+  <% end %>
+
+    <span class="notice"><%= notice %></span>
+    <span class="alert"><%= alert %></span>
+    <%= yield %>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<% @notes.each do |note| %>
+  <tr>
+    <td colspan="2"><%= note.title %><br/>
+    <%= link_to "Edit", edit_note_path(note),remote: true %>|
+    <%= link_to "Add Comment", note_path(note), remote:true%>|
+    <%= link_to "Delete", note_delete_path(note), remote:true %></td>
+  </tr>
+<% end %>
