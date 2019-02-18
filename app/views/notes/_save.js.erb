@@ -4,5 +4,6 @@ $("ul.errors").html("")
     $("ul.errors").append($("<li/>")).html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
-  $(".note-index").html("<%= escape_javascript(render 'index') %>"); $("#note-modal").modal("hide")
+  $(".note-index").html("<%= escape_javascript(render 'index') %>");
+  $("#note-modal").modal("hide")
 <% end %>

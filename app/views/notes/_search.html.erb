@@ -1,0 +1,24 @@
+<% unless @notes.nil? %>
+  <% if @notes.empty? %>
+    <h5>No notes found matching your query.</h5>
+  <% else %>
+    <h5>Search results</h5>
+
+    <table style="width: 100%;" border="1">
+      <thead>
+         <tr>
+           <th>Title</th>
+           <th>Description</th>
+         </tr>
+      </thead>
+      <tbody>
+        <% @notes.each do |note| %>
+          <tr>
+            <td><%= note.title %></td>
+            <td><%= note.description %></td>
+          </tr>
+        <% end %>
+      <tbody>
+    </table>
+  <% end %>
+<% end %>

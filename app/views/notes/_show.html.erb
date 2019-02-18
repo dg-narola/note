@@ -3,17 +3,23 @@
 </div>
 
       <h3>Note</h3>
-
+      <p><strong>Tags:</strong>
+      <%# raw @note.tag_list.map { |t| link_to t, tagged_notes_path(t) }.join(', ') %>
+        <%= @note.tag_list %>
+      </p>
       <p>
-        <strong>Title</strong>
+        <strong>Title:</strong>
         <%= @note.title %>
       </p>
       <p>
-        <strong>Description</strong>
-        <%= @note.description %>
+        <strong>Description:</strong>
+        <%= raw @note.description %>
       </p>
-      <div id="new-form" class="new-form"></div>
-      <div id="comm-form" class="comm-form"></div>
+      <div id="new-form" class="modal fade"></div>
+      <div id="comm-form" class="modal fade"></div>
+
+
+      </div>
       <h2>Comments</h2>
       <%= render 'comments/index'%>
       <div align="center" class="links">

@@ -1,0 +1,37 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Note</h3>
+    </div>
+    <div class="modal-body">
+      <table class="table table-bordered table-stripped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+             <th>Tag</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="note-index">
+          <% @notes.each do |note| %>
+            <tr>
+              <td><%= note.title %></td>
+              <td><%= note.description %></td>
+              <td><%= note.tag_list %></td>
+              <td><%= link_to "Edit", edit_note_path(note),remote: true %></td>
+              <td><%= link_to "Add Comment", note_path(note), remote:true%></td>|
+              <td><%= link_to "Delete", note_delete_path(note), remote:true %></td>
+            </tr>
+          <% end %>
+
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+<%= tinymce_assets %>
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
@@ -12,7 +13,11 @@
       </div>
       <div class="form-group">
         <%= f.label :description, class: "control-label" %>
-        <%= f.text_area :description, class: "form-control" %>
+        <%= f.text_area :description, class: "form-control  tinymce data-no-turbolink" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :tag_list, class: "control-label" %>
+        <%= f.text_field :tag_list, class: "form-control"%>
       </div>
       <div class="form-group">
         <%= f.hidden_field :user_id, class: "control-label" %>
@@ -26,3 +31,4 @@
     <% end %>
   </div>
 </div>
+<%= tinymce %>

@@ -1,8 +1,8 @@
-<div class="col-md-3" style="height: 1000px; overflow-y: scroll;">
+  <%= link_to "New Note", new_note_path, remote: true, class: "btn btn-primary",:"data-turbolinks" => false %> <br><br>
+<div class="col-md-3" style="height: 500px; overflow-y: scroll;">
   <div class="container-fluid">
-    <%= link_to "New Note", new_note_path, remote: true, class: "btn btn-primary" %> <br><br>
-    <div class="new-note"></div>
 
+    <div class="new-note"></div>
     <table class="table table-bordered table-stripped">
       <thead>
         <tr>
@@ -18,7 +18,7 @@
 </div>
 
 <div class="col-md-9">
-
-  <div id="edit-form"></div>
-  <div id="user-form"></div>
+  <div id="edit-form" class="col-sm-4"></div>
+  <div id="user-form" class="col-sm-5"></div>
+  <div id="tag-form" class="modal fade"></div>
 </div>

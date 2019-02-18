@@ -67,6 +67,26 @@
           <td><br/></td>
         </tr>
         <tr>
+          <div class="field">
+            <td><%= f.label :image %></td>
+            <td><%= f.file_field :image, autofocus: true%></td>
+            <td></td>
+          </div>
+        </tr>
+        <tr>
+          <td><br/></td>
+        </tr>
+        <tr>
+          <div class="field">
+            <td><%= f.label :image %></td>
+            <td><%= image_tag @user.image %></td>
+            <td></td>
+          </div>
+        </tr>
+        <tr>
+          <td><br/></td>
+        </tr>
+        <tr>
           <div class="actions">
             <td colspan="2" align="center"><%= f.submit "Update", class: "btn btn-primary" %></td>
           </div>

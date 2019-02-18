@@ -9,6 +9,14 @@ gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'jquery-rails'
 
 gem 'will_paginate'
+
+gem 'elasticsearch-model'
+
+gem 'elasticsearch-rails'
+
+gem 'acts-as-taggable-on'
+
+gem 'tinymce-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 # Use sqlite3 as the database for Active Record
