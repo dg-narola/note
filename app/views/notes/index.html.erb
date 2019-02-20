@@ -1,4 +1,12 @@
-  <%= link_to "New Note", new_note_path, remote: true, class: "btn btn-primary",:"data-turbolinks" => false %> <br><br>
+<%= link_to "New Note", new_note_path, remote: true, class: "btn btn-primary" %>
+<% if current_user.autosave %>
+<%= link_to "NoAutosave", noautosave_notes_path(@user), remote: true, class: "btn btn-primary" %>
+<% else %>
+<%= link_to "Autosave", autosave_notes_path(@user), remote: true, class: "btn btn-primary" %>
+<% end %>
+
+<br><br>
+
 <div class="col-md-3" style="height: 500px; overflow-y: scroll;">
   <div class="container-fluid">
 

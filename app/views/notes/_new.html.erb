@@ -25,10 +25,38 @@
       </div>
     </div>
     <div class="modal-footer">
+      <% if current_user.autosave %>
       <%= f.submit class: "btn btn-primary" %>
-      <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+      <% else %>
+      <div class="new_note"></div>
+      <% end %>
+      <%= link_to "Cancel",notes_path(@note), class: "btn", data: {dismiss: "modal"} %>
     </div>
     <% end %>
   </div>
 </div>
+
 <%= tinymce %>
+
+<script type="text/javascript">
+  $(function() {
+    if ($("#new_note").length > 0) {
+      setInterval(autoSavePost, 10000);
+    }
+  });
+
+  function autoSavePost() {
+    tinymce.triggerSave();
+    $.ajax({
+      type: "POST",
+      url: "notes",
+      data: $("#new_note").serialize(),
+      dataType: "script",
+      success: function(data) {
+        console.log(data);
+        console.log("Success");
+      }
+    });
+    setInterval(autoSavePost, 10000);
+  }
+</script>

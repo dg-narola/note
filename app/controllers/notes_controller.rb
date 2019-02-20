@@ -20,8 +20,11 @@ class NotesController < ApplicationController
   def create
     @notes = Note.all
     @note = Note.create(note_params)
-    redirect_to notes_path
+    #redirect_to notes_path
+    respond_to do |format|
+          format.js { render js: 'window.location.href = "notes";' }
   end
+end
 
   def show
     @note = Note.find(params[:id])
@@ -34,7 +37,7 @@ class NotesController < ApplicationController
    @note.update_attributes(important: true)
    redirect_to notes_path
  end
- 
+
  def unimportant
    @note = Note.find(params[:id])
    @note.update_attributes(important: false)
@@ -52,15 +55,39 @@ class NotesController < ApplicationController
     end
   end
 
+  def autosave
+    @user = User.find(current_user.id)
+    @user.update_attributes(autosave: true)
+    respond_to do |format|
+          format.js { render js: 'window.location.href = "notes";' }
+        end
+  end
+
+  def noautosave
+    @user = User.find(current_user.id)
+    @user.update_attributes(autosave: false)
+    respond_to do |format|
+          format.js { render js: 'window.location.href = "notes";' }
+        end
+  end
+
   def edit
     @note = Note.find(params[:id])
+    respond_to do |format|
+          format.html { render :edit }
+          format.js
+          format.json { render json: @note}
+      end
   end
 
   def update
     @notes = Note.all
     @note = Note.find(params[:id])
-    @note.update(note_params)
-    redirect_to notes_path
+    @note.update_attributes(note_params)
+    #redirect_to notes_path
+    respond_to do |format|
+          format.js { render js: 'window.location.href = "notes";' }
+        end
   end
 
   def delete

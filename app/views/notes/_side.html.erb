@@ -1,24 +1,26 @@
 <%= form_for :search_notes, url: search_notes_path,remote: true ,method: :get do |form| %>
-  <p>
-    <%= form.text_field :query%>
-    <%= form.submit "Search", name: nil ,class: "btn btn-primary"%>
-  </p>
+<p>
+  <%= form.text_field :query%>
+  <%= form.submit "Search" ,class: "btn btn-primary"%>
+</p>
 <% end %>
-  <div id="search-form"></div>
+
+<div id="search-form"></div>
 <% @notes.each do |note| %>
-  <tr>
-    <td colspan="2"><%= link_to note.title,note_path(note), remote:true %>
-      <% if note.important == true%>
-        <%= link_to "",unimportant_note_path(note),class: "glyphicon glyphicon-star pull-right"%>
-      <% else %>
-        <%= link_to "",important_note_path(note),class: "glyphicon glyphicon-star-empty pull-right"%>
-      <% end %><br>
-    <%= link_to "Edit", edit_note_path(note),remote: true,'data-no-turbolink' => true %>|
+<tr>
+  <td colspan="2"><%= link_to note.title,note_path(note), remote:true %>
+    <% if note.important == true%>
+    <%= link_to "",unimportant_note_path(note),class: "glyphicon glyphicon-star pull-right"%>
+    <% else %>
+    <%= link_to "",important_note_path(note),class: "glyphicon glyphicon-star-empty pull-right"%>
+    <% end %><br>
+    <%= link_to "Edit", edit_note_path(note),remote: true %>|
     <%= link_to "Show", note_path(note), remote:true%>|
     <%= link_to "Delete", note_delete_path(note), remote:true %><br>
-   <span class="pull-right" style="font-size:12px;"><% note.tag_list.each do |tag| %>
-      <u><%= link_to tag, tagged_notes_path(tag: tag) ,remote:true %></u>
-    <% end %></span></td>
 
-  </tr>
+    <span class="pull-right" style="font-size:12px;"><% note.tag_list.each do |tag| %>
+      <u><%= link_to tag, tagged_notes_path(tag: tag) ,remote:true %></u>
+      <% end %></span></td>
+
+    </tr>
 <% end %>

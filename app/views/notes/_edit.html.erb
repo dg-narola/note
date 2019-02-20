@@ -13,7 +13,7 @@
       </div>
       <div class="form-group">
         <%= f.label :description, class: "control-label" %>
-        <%= f.text_area :description, class: "form-control  tinymce data-no-turbolink" %>
+        <%= f.text_area :description, class: "form-control  tinymce" %>
       </div>
       <div class="form-group">
         <%= f.label :tag_list, class: "control-label" %>
@@ -25,10 +25,37 @@
       </div>
     </div>
     <div class="modal-footer">
+      <% if current_user.autosave %>
       <%= f.submit class: "btn btn-primary" %>
+      <% else %>
+      <div class="edit_note"></div>
+      <% end %>
       <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
     </div>
     <% end %>
   </div>
 </div>
 <%= tinymce %>
+<script type="text/javascript">
+  $(function() {
+  if ($(".edit_note").length > 0) {
+    setInterval(autoSavePost, 10000);
+  }
+});
+
+function autoSavePost() {
+   tinymce.triggerSave();
+   console.log($(".edit_note").serialize());
+  $.ajax({
+  type: "PATCH",
+  url: "<%= note_path(@note) %>",
+  data: $(".edit_note").serialize(),
+  dataType: "script",
+  success: function(data) {
+    console.log(data);
+    console.log("Success");
+  }
+});
+  setInterval(autoSavePost, 10000);
+}
+</script>
