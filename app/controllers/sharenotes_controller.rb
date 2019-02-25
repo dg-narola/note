@@ -1,11 +1,14 @@
 class SharenotesController < ApplicationController
   before_action :authenticate_user!
   def index
-    @sharenotes = Sharenote.select("*").joins(:note).where(email: current_user.email).where(notes: {status: false})
+    #@sharenotes = Sharenote.all.joins(:note).where(email: current_user.email).where(notes: {status: false})
+    @sharenotes = Sharenote.all.includes(:note).where(email: current_user.email).where(notes: {status: false})
+    #render plain: @sharenotes.inspect
   end
 
   def shownote
-    @sharednotes = Sharenote.select("*").joins(:note).where(user_id: current_user.id).where(notes: {status: false})
+    @sharednotes = Sharenote.all.includes(:note).where(user_id: current_user.id).where(notes: {status: false})
+    #@sharednotes = Sharenote.all.joins(:note).where(user_id: current_user.id).where(notes: {status: false})
   end
 
   def new
@@ -42,7 +45,7 @@ class SharenotesController < ApplicationController
     @sharenote = Sharenote.where(note_id: @note )
     #render plain: @sharenote.inspect
     @sharenote.update(edit: true)
-    redirect_to notes_path  
+    redirect_to notes_path
   end
 
   private

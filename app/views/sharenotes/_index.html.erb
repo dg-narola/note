@@ -9,18 +9,18 @@
       <table class="table table-bordered table-stripped">
         <thead>
           <tr>
-            <th>SharedBy</th>
             <th>Title</th>
             <th>Description</th>
+            <th>SharedBy</th>
             <th colspan="2">Actions</th>
           </tr>
         </thead>
         <tbody class="note-index">
           <% @sharenotes.each do |note| %>
           <tr>
-            <td><%= User.find(note.user_id).username %></td>
-            <td><%= note.title %></td>
-            <td><%= raw note.description %></td>
+            <td><%= note.note.title %></td>
+            <td><%= raw note.note.description %></td>
+            <td><%= note.try(:user).try(:username) %></td>
             <td><%= link_to "Show", note_path(note), remote:true,class: "btn btn-primary"%></td>
             <td>
             <% if note.edit == true %>

@@ -1,10 +1,11 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @n = Note.where(user_id: current_user.id,status: false)
     @notes = Note.where(user_id: current_user.id,status: false).all.order("created_at DESC")
     #@note = Note.find(params[:id])
-    @sharenotes = Sharenote.select("*").joins(:note).where(email: current_user.email).where(notes: {status: false})
+    @sharenotes = Sharenote.all.joins(:note).where(email: current_user.email).where(notes: {status: false})
   end
 
   def search
@@ -103,6 +104,11 @@ class NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:title, :description, :user_id, :tag_list)
+    params.require(:note).permit(
+      :title,
+      :description,
+      :user_id,
+      :tag_list
+    )
   end
 end

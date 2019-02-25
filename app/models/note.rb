@@ -26,7 +26,7 @@ class Note < ApplicationRecord
       filter: ["lowercase", "ngram_filter"]
     }
   }
-}do
+} do
     mappings dynamic: false do
       indexes :title, type: :text, analyzer: :english, analyzer: "ngram_analyzer"
       indexes :description, type: :text, analyzer: :english, analyzer: "ngram_analyzer"
@@ -39,26 +39,26 @@ class Note < ApplicationRecord
   end
 
   def self.search_published(query)
-  self.search({
-    query: {
-      bool: {
-        must: [
-        {
-          multi_match: {
-            query: query,
-            fields: [:title, :description],
-            fuzziness: "AUTO"
+    self.search({
+      query: {
+        bool: {
+          must: [
+            {
+              multi_match: {
+                query: query,
+                fields: [:title, :description],
+                fuzziness: "AUTO"
 
+              }
+            },
+            {
+              match: {
+                status: false
+              }
+              }]
+            }
           }
-        },
-        {
-          match: {
-            status: false
-          }
-        }]
-      }
-    }
-  })
+          })
   end
 end
 Note.import(force: true)

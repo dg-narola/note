@@ -1,11 +1,11 @@
 class User < ApplicationRecord
-  has_many :notes
-  has_many :comments
-  has_many :sharenotes
+  has_many :notes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :sharenotes, dependent: :destroy 
   has_one_attached :image
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise:database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
 end
