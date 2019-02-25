@@ -1,0 +1,2 @@
+module SharenotesHelper
+end

@@ -1,8 +1,8 @@
 <%= link_to "New Note", new_note_path, remote: true, class: "btn btn-primary" %>
 <% if current_user.autosave %>
-<%= link_to "NoAutosave", noautosave_notes_path(@user), remote: true, class: "btn btn-primary" %>
+<%= link_to "AutosaveOff", noautosave_notes_path(@user), remote: true, class: "btn btn-primary" %>
 <% else %>
-<%= link_to "Autosave", autosave_notes_path(@user), remote: true, class: "btn btn-primary" %>
+<%= link_to "AutosaveOn", autosave_notes_path(@user), remote: true, class: "btn btn-primary" %>
 <% end %>
 
 <br><br>
@@ -26,7 +26,11 @@
 </div>
 
 <div class="col-md-9">
+    <%# render "sharenotes/index" %>
   <div id="edit-form" class="col-sm-4"></div>
   <div id="user-form" class="col-sm-5"></div>
   <div id="tag-form" class="modal fade"></div>
+  <div id="share-form" class="modal fade"></div>
+  <div id="index-form" class="modal fade"></div>
+  <div id="show-form" class="modal fade"></div>
 </div>

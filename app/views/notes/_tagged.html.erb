@@ -1,7 +1,7 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
-      <h3>Note</h3>
+      <h3>Tagged Notes</h3>
     </div>
     <div class="modal-body">
       <table class="table table-bordered table-stripped">
@@ -19,7 +19,7 @@
           <% @notes.each do |note| %>
             <tr>
               <td><%= note.title %></td>
-              <td><%= note.description %></td>
+              <td><%= raw note.description %></td>
               <td><%= note.tag_list %></td>
               <td><%= link_to "Edit", edit_note_path(note),remote: true %></td>
               <td><%= link_to "Add Comment", note_path(note), remote:true%></td>|

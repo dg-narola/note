@@ -4,6 +4,7 @@ class Note < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
   has_many :comments
+  has_many :sharenotes
   belongs_to :user
   validates :title, presence: true
   validates :description, presence: true

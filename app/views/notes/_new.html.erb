@@ -26,9 +26,30 @@
     </div>
     <div class="modal-footer">
       <% if current_user.autosave %>
-      <%= f.submit class: "btn btn-primary" %>
+      <script type="text/javascript">
+        $(function() {
+          if ($("#new_note").length > 0) {
+            setInterval(autoSavePost, 10000);
+          }
+        });
+
+        function autoSavePost() {
+          tinymce.triggerSave();
+          $.ajax({
+            type: "POST",
+            url: "notes",
+            data: $("#new_note").serialize(),
+            dataType: "script",
+            success: function(data) {
+              console.log(data);
+              console.log("Success");
+            }
+          });
+          setInterval(autoSavePost, 10000);
+        }
+      </script>
       <% else %>
-      <div class="new_note"></div>
+        <%= f.submit class: "btn btn-primary" %>
       <% end %>
       <%= link_to "Cancel",notes_path(@note), class: "btn", data: {dismiss: "modal"} %>
     </div>
@@ -37,26 +58,3 @@
 </div>
 
 <%= tinymce %>
-
-<script type="text/javascript">
-  $(function() {
-    if ($("#new_note").length > 0) {
-      setInterval(autoSavePost, 10000);
-    }
-  });
-
-  function autoSavePost() {
-    tinymce.triggerSave();
-    $.ajax({
-      type: "POST",
-      url: "notes",
-      data: $("#new_note").serialize(),
-      dataType: "script",
-      success: function(data) {
-        console.log(data);
-        console.log("Success");
-      }
-    });
-    setInterval(autoSavePost, 10000);
-  }
-</script>

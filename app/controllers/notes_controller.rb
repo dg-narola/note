@@ -1,30 +1,33 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
   def index
-    #@notes = Note.all
-    #@notes = Note.find(:all, :conditions => { :status => false })
     @n = Note.where(user_id: current_user.id,status: false)
     @notes = Note.where(user_id: current_user.id,status: false).all.order("created_at DESC")
-    #@note = Note.find_by_id(params[:id])
+    #@note = Note.find(params[:id])
+    @sharenotes = Sharenote.select("*").joins(:note).where(email: current_user.email).where(notes: {status: false})
   end
+
   def search
     tag = params[:search_notes][:query]
     query = params[:search_notes].presence && params[:search_notes][:query] && tag
     tags = Note.tagged_with(query)
     note = Note.search_published(query)
     if query
-        @notes = tags + note
-   end
+      @notes = tags + note
+    end
   end
 
   def create
     @notes = Note.all
     @note = Note.create(note_params)
-    #redirect_to notes_path
     respond_to do |format|
-          format.js { render js: 'window.location.href = "notes";' }
+      format.js { render js: 'window.location.href = "notes";' }
+    end
   end
-end
+
+  def new
+    @note = Note.new
+  end
 
   def show
     @note = Note.find(params[:id])
@@ -32,19 +35,16 @@ end
     @comments = @note.comments.paginate(:page => params[:page], :per_page => 10)
   end
 
- def important
-   @note = Note.find(params[:id])
-   @note.update_attributes(important: true)
-   redirect_to notes_path
- end
+  def important
+    @note = Note.find(params[:id])
+    @note.update_attributes(important: true)
+    redirect_to notes_path
+  end
 
- def unimportant
-   @note = Note.find(params[:id])
-   @note.update_attributes(important: false)
-   redirect_to notes_path
- end
-  def new
-    @note = Note.new
+  def unimportant
+    @note = Note.find(params[:id])
+    @note.update_attributes(important: false)
+    redirect_to notes_path
   end
 
   def tagged
@@ -59,35 +59,34 @@ end
     @user = User.find(current_user.id)
     @user.update_attributes(autosave: true)
     respond_to do |format|
-          format.js { render js: 'window.location.href = "notes";' }
-        end
+      format.js { render js: 'window.location.href = "notes";' }
+    end
   end
 
   def noautosave
     @user = User.find(current_user.id)
     @user.update_attributes(autosave: false)
     respond_to do |format|
-          format.js { render js: 'window.location.href = "notes";' }
-        end
+      format.js { render js: 'window.location.href = "notes";' }
+    end
   end
 
   def edit
     @note = Note.find(params[:id])
     respond_to do |format|
-          format.html { render :edit }
-          format.js
-          format.json { render json: @note}
-      end
+      format.html { render :edit }
+      format.js
+      format.json { render json: @note}
+    end
   end
 
   def update
     @notes = Note.all
     @note = Note.find(params[:id])
     @note.update_attributes(note_params)
-    #redirect_to notes_path
     respond_to do |format|
-          format.js { render js: 'window.location.href = "notes";' }
-        end
+      format.js { render js: 'window.location.href = "notes";' }
+    end
   end
 
   def delete
@@ -99,8 +98,8 @@ end
     @note = Note.find(params[:id])
     @note.update_attributes(status: true)
     redirect_to notes_path
-    #@note.destroy
   end
+
   private
 
   def note_params

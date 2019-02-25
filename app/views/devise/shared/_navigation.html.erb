@@ -4,9 +4,10 @@
       <%= link_to 'Notes', root_path, class: 'navbar-brand' %>
     </div>
     <div id="navbar">
-      <!--<ul class="nav navbar-nav">
-        <li><%= link_to 'Home', root_path %></li>
-      </ul>-->
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Notes Shared To Me', sharenotes_index_notes_path, remote: true%></li>
+        <li><%= link_to 'Notes Shared By Me', sharenotes_shownote_notes_path, remote: true%></li>
+      </ul>
       <ul class="nav navbar-nav pull-right">
         <% if user_signed_in? %>
           <li class="dropdown">
@@ -18,6 +19,7 @@
               <li><%= link_to 'Profile', edit_user_registration_path %></li>
               <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %>
               <li><%= link_to 'Personal Notes',notes_path, remote: true%></li>
+
             </ul>
           </li>
         <% else %>

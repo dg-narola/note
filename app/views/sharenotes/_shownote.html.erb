@@ -1,0 +1,34 @@
+<%#   render plain: @sharenotes.inspect %>
+<%# render plain:@noteid.inspect %>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Notes Shared By Me</h3>
+    </div>
+    <div class="modal-body">
+      <table class="table table-bordered table-stripped">
+        <thead>
+          <tr>
+            <th>SharedTo</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody class="note-index">
+          <% @sharednotes.each do |note| %>
+          <tr>
+            <td><%= note.email %></td>
+            <td><%= note.title %></td>
+            <td><%= raw note.description %></td>
+            <td><%= link_to "Show", note_path(note), remote:true,class: "btn btn-primary"%></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+    </div>
+  </div>
+</div>

@@ -16,7 +16,8 @@
     <% end %><br>
     <%= link_to "Edit", edit_note_path(note),remote: true %>|
     <%= link_to "Show", note_path(note), remote:true%>|
-    <%= link_to "Delete", note_delete_path(note), remote:true %><br>
+    <%= link_to "Delete", note_delete_path(note), remote:true %>|
+    <%= link_to "Share", new_note_sharenote_path(note), remote:true %><br>
 
     <span class="pull-right" style="font-size:12px;"><% note.tag_list.each do |tag| %>
       <u><%= link_to tag, tagged_notes_path(tag: tag) ,remote:true %></u>
