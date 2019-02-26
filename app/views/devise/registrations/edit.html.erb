@@ -1,111 +1,106 @@
 <div class="container" align="center">
   <div class="row">
-    <div class="col-md-4">
-    </div>
+    <div class="col-md-4"></div>
     <div class="col-md-4 well"  style="background-color:ligthgrey;">
       <h1 style="color:blue;">Note</h1><br/>
       <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= devise_error_messages! %>
-      <table>
-        <tr>
-          <div class="field">
-            <td><%= f.label :email %></td>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-          </div>
-        </tr>
-        <tr>
-          <td><br/></td>
-        </tr>
-        <tr>
-          <div class="field">
-            <td><%= f.label :username %></td>
-            <td><%= f.text_field :username, autofocus: true, autocomplete: "username" %></td>
-          </div>
-        </tr>
-        <tr>
-          <td><br/></td>
-        </tr>
-        <tr>
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <td colspan="2"><div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div></td>
-          <% end %>
-        </tr>
-        <tr>
-          <td><br/></td>
-        </tr>
-        <tr>
-          <div class="field">
-            <td><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br /></td>
-            <td><%= f.password_field :password, autocomplete: "new-password" %></td>
-            <% if @minimum_password_length %>
-            <br />
-            <em><%= @minimum_password_length %> characters minimum</em>
-            <% end %>
-          </div>
-        </tr>
-        <tr>
-          <td><br/></td>
-        </tr>
-        <tr>
-          <div class="field">
-            <td><%= f.label :password_confirmation %></td>
-            <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-          </div>
-        </tr>
-        <tr>
-          <td><br/></td>
-        </tr>
-        <tr>
-          <div class="field">
-            <td><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br /></td>
-            <td><%= f.password_field :current_password, autocomplete: "current-password" %></td>
-          </div>
-        </tr>
-        <tr>
-          <td><br/></td>
-        </tr>
-        <tr>
-          <div class="field">
-            <td><%= f.label :image %></td>
-            <td><%= f.file_field :image, autofocus: true%></td>
-            <td></td>
-          </div>
-        </tr>
-        <tr>
-          <td><br/></td>
-        </tr>
-        <tr>
-          <div class="field">
-            <td><%= f.label :image %></td>
-            <td><%= image_tag @user.image %></td>
-            <td></td>
-          </div>
-        </tr>
-        <tr>
-          <td><br/></td>
-        </tr>
-        <tr>
-          <div class="actions">
-            <td colspan="2" align="center"><%= f.submit "Update", class: "btn btn-primary" %></td>
-          </div>
-        </tr>
-
-        <% end %>
-
-        <tr>
-          <td colspan="2" align="center"><h3>Cancel my account</h3></td>
-        </tr>
-        <tr>
-          <td colspan="2" align="center"><p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "btn btn-primary"%></p>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" align="center"><%= link_to "Back", :back %></td>
-        </tr>
-      </div>
-      <div class="col-md-4">
-      </div>
+        <%= devise_error_messages! %>
+          <table>
+              <tr>
+                <div class="field">
+                    <td><%= f.label :email %></td>
+                    <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+                </div>
+              </tr>
+              <tr>
+                <td><br/></td>
+              </tr>
+              <tr>
+                <div class="field">
+                  <td><%= f.label :username %></td>
+                  <td><%= f.text_field :username, autofocus: true, autocomplete: "username" %></td>
+                </div>
+              </tr>
+              <tr>
+                <td><br/></td>
+              </tr>
+              <tr>
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <td colspan="2"><div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div></td>
+                <% end %>
+              </tr>
+              <tr>
+                <td><br/></td>
+              </tr>
+              <tr>
+                <div class="field">
+                  <td><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br /></td>
+                  <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+                  <% if @minimum_password_length %><br />
+                    <em><%= @minimum_password_length %> characters minimum</em>
+                  <% end %>
+                </div>
+              </tr>
+              <tr>
+                <td><br/></td>
+              </tr>
+              <tr>
+                <div class="field">
+                  <td><%= f.label :password_confirmation %></td>
+                  <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+                </div>
+              </tr>
+              <tr>
+                <td><br/></td>
+              </tr>
+              <tr>
+                <div class="field">
+                  <td><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br /></td>
+                  <td><%= f.password_field :current_password, autocomplete: "current-password" %></td>
+                </div>
+              </tr>
+              <tr>
+                <td><br/></td>
+              </tr>
+              <tr>
+                <div class="field">
+                  <td><%= f.label :image %></td>
+                  <td><%= f.file_field :image, autofocus: true%></td>
+                  <td></td>
+                </div>
+              </tr>
+              <tr>
+                <td><br/></td>
+              </tr>
+              <tr>
+                <div class="field">
+                  <td><%= f.label :image %></td>
+                  <td><%= image_tag @user.image %></td>
+                  <td></td>
+                </div>
+              </tr>
+              <tr>
+                <td><br/></td>
+              </tr>
+              <tr>
+                <div class="actions">
+                  <td colspan="2" align="center"><%= f.submit "Update", class: "btn btn-primary" %></td>
+                </div>
+              </tr>
+      <% end %>
+              <tr>
+                <td colspan="2" align="center"><h3>Cancel my account</h3></td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center"><p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete , class: "btn btn-primary"%></p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" align="center"><%= link_to "Back", :back %></td>
+              </tr>
     </div>
+            <div class="col-md-4"></div>
   </div>
+</div>

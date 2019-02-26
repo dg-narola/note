@@ -1,10 +1,10 @@
 <div class="pull-right">
-  <%= link_to "New Comment", new_note_comment_path(@note, @comment), remote: true , class: "btn btn-primary pull-right" %>
+  <%= link_to "NewComment", new_note_comment_path(@note, @comment), remote: true , class: "btn btn-primary pull-right glyphicon glyphicon-comment" %>
 </div>
 
       <h3>Note</h3>
       <p><strong>Tags:</strong>
-      <%# raw @note.tag_list.map { |t| link_to t, tagged_notes_path(t) }.join(', ') %>
+        <%# raw @note.tag_list.map { |t| link_to t, tagged_notes_path(t) }.join(', ') %>
         <%= @note.tag_list %>
       </p>
       <p>
@@ -18,20 +18,20 @@
       <div id="new-form" class="modal fade"></div>
       <div id="comm-form" class="modal fade"></div>
 
-
-      </div>
       <h2>Comments</h2>
       <%= render 'comments/index'%>
       <div align="center" class="links">
             <%= will_paginate @comments %>
       </div>
 
-    <div class="modal-footer">
-      <%# link_to "Add comment", new_note_comment_path(@note),remote: true, class: "btn btn-primary" %>
-      <%= link_to "Cancel","#", class: "btn btn-default", data: { dismiss: "modal" } %>
-    </div>
-    <script type="text/javascript">
-     $(function(){
-        $('.links a').attr('data-remote', 'true')
-      });
-   </script>
+      <div class="modal-footer">
+        <%# link_to "Add comment", new_note_comment_path(@note),remote: true, class: "btn btn-primary" %>
+        <%= link_to "Cancel","#", class: "btn btn-danger",
+          data: { dismiss: "modal" } %>
+      </div>
+      <script type="text/javascript">
+        $(function()
+        {
+          $('.links a').attr('data-remote', 'true')
+        });
+      </script>

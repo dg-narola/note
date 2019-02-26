@@ -1,4 +1,4 @@
-<%#   render plain: @sharenotes.inspect %>
+<%# render plain: @sharenotes.inspect %>
 <%# render plain:@noteid.inspect %>
 <div class="modal-dialog">
   <div class="modal-content">
@@ -12,30 +12,32 @@
             <th>Title</th>
             <th>Description</th>
             <th>SharedBy</th>
-            <th colspan="2">Actions</th>
+            <th colspan="2"><center>Actions</center></th>
           </tr>
         </thead>
         <tbody class="note-index">
           <% @sharenotes.each do |note| %>
-          <tr>
-            <td><%= note.note.title %></td>
-            <td><%= raw note.note.description %></td>
-            <td><%= note.try(:user).try(:username) %></td>
-            <td><%= link_to "Show", note_path(note), remote:true,class: "btn btn-primary"%></td>
-            <td>
-            <% if note.edit == true %>
-               <%= link_to "Edit", edit_note_path(note),remote: true, class: "btn btn-primary"%>
-            <% else %>
-              <%= link_to "Edit Access", sharenotes_editaccess_note_path(note), remote:true,class: "btn btn-primary"%>
-            <% end %>
-            </td>
-          </tr>
+            <tr>
+              <td><%= note.note.title %></td>
+              <td><%= raw note.note.description %></td>
+              <td><%= note.try(:user).try(:username) %></td>
+              <td><%= link_to "Show", note_path(note), remote:true,class: "btn btn-primary glyphicon glyphicon-expand"%></td>
+              <td>
+                <% if note.edit == true %>
+                  <%= link_to "Edit", edit_note_path(note),remote: true,
+                   class: "btn btn-primary glyphicon glyphicon-edit"%>
+                <% else %>
+                  <%= link_to "Edit Access", sharenotes_editaccess_note_path(note),
+                   remote:true,class: "btn btn-primary"%>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
         </tbody>
       </table>
     </div>
     <div class="modal-footer">
-      <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+      <%= link_to "Cancel", "#", class: "btn btn-danger", data: {dismiss: "modal"} %>
     </div>
   </div>
 </div>

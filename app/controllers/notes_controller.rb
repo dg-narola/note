@@ -1,21 +1,36 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!
 
+  #
+  ##show all notes
+  #
+
   def index
     @n = Note.where(user_id: current_user.id,status: false)
-    @notes = Note.where(user_id: current_user.id,status: false).all.order("created_at DESC")
-    #@note = Note.find(params[:id])
-    @sharenotes = Sharenote.all.joins(:note).where(email: current_user.email).where(notes: {status: false})
+    @notes = Note.where(user_id: current_user.id,status: false
+    ).all.order("created_at DESC")
   end
 
+    #
+    ##searching
+    #
+
   def search
-    tag = params[:search_notes][:query]
-    query = params[:search_notes].presence && params[:search_notes][:query] && tag
+    #tag = params[:search_notes][:query]
+    query = params[:search_notes].presence && params[:search_notes][:query]
     tags = Note.tagged_with(query)
     note = Note.search_published(query)
     if query
       @notes = tags + note
     end
+  end
+
+    #
+    ##creating new notes
+    #
+
+  def new
+      @note = Note.new
   end
 
   def create
@@ -26,9 +41,9 @@ class NotesController < ApplicationController
     end
   end
 
-  def new
-    @note = Note.new
-  end
+    #
+    ##show all notes and comments with pagination
+    #
 
   def show
     @note = Note.find(params[:id])
@@ -36,17 +51,29 @@ class NotesController < ApplicationController
     @comments = @note.comments.paginate(:page => params[:page], :per_page => 10)
   end
 
+    #
+    ##to mark note as important
+    #
+
   def important
     @note = Note.find(params[:id])
     @note.update_attributes(important: true)
     redirect_to notes_path
   end
 
+    #
+    ##to mark note as unimportant
+    #
+
   def unimportant
     @note = Note.find(params[:id])
     @note.update_attributes(important: false)
     redirect_to notes_path
   end
+
+    #
+    ##tags
+    #
 
   def tagged
     if params[:tag].present?
@@ -56,6 +83,10 @@ class NotesController < ApplicationController
     end
   end
 
+    #
+    ##To enable autosave
+    #
+
   def autosave
     @user = User.find(current_user.id)
     @user.update_attributes(autosave: true)
@@ -64,6 +95,10 @@ class NotesController < ApplicationController
     end
   end
 
+    #
+    ##to disable autosave
+    #
+
   def noautosave
     @user = User.find(current_user.id)
     @user.update_attributes(autosave: false)
@@ -71,6 +106,10 @@ class NotesController < ApplicationController
       format.js { render js: 'window.location.href = "notes";' }
     end
   end
+
+    #
+    ##editing the notes
+    #
 
   def edit
     @note = Note.find(params[:id])
@@ -81,6 +120,10 @@ class NotesController < ApplicationController
     end
   end
 
+    #
+    ##updating the notes
+    #
+
   def update
     @notes = Note.all
     @note = Note.find(params[:id])
@@ -90,9 +133,18 @@ class NotesController < ApplicationController
     end
   end
 
+    #
+    ##getting notes id for performind delete
+    #
+
   def delete
-    @note = Note.find(params[:note_id])
+    @note = Note.find(params[:id])
+    #render plain: @note.inspect
   end
+
+    #
+    ##for destroying the notes
+    #
 
   def destroy
     @notes = Note.all
@@ -100,6 +152,10 @@ class NotesController < ApplicationController
     @note.update_attributes(status: true)
     redirect_to notes_path
   end
+
+    #
+    ##parameters
+    #
 
   private
 

@@ -1,6 +1,7 @@
 class NoteMailer < ApplicationMailer
-default from: 'dg@narola.email'
-  def share_email(sharenote,user)
+   default from: 'dg@narola.email'
+
+   def share_email(sharenote,user)
      @sharenote = sharenote
      @user = user
      @url = 'http://localhost:3000/notes'
@@ -15,8 +16,8 @@ default from: 'dg@narola.email'
     end
 
     def edit_email(sendto,user,note)
-      @note = note.title
-      @noteid = note.id
+       @note = note.title
+       @noteid = note.id
        @sendto = sendto
        @user = user
        @url  = "http://localhost:3000/notes/#{@noteid}/sharenotes/updatepermission"

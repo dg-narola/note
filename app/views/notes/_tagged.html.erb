@@ -26,12 +26,11 @@
               <td><%= link_to "Delete", note_delete_path(note), remote:true %></td>
             </tr>
           <% end %>
-
         </tbody>
       </table>
     </div>
     <div class="modal-footer">
-      <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+      <%= link_to "Cancel", "#", class: "btn btn-danger", data: {dismiss: "modal"} %>
     </div>
   </div>
 </div>

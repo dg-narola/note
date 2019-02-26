@@ -1,32 +1,43 @@
 <% unless @notes.nil? %>
-<% if @notes.empty? %>
-<h5>No notes found matching your query.</h5>
-<% else %>
-
-<table class="table table-bordered table-stripped">
-  <thead>
-    <tr>
-      <th colspan="2"><center>Note</center></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @notes.each do |note| %>
-    <tr>
-      <td><%= link_to note.title,note_path(note.id),remote:true%>
-        <% if note.important%>
-        <%= link_to "",unimportant_note_path(note.id),class: "glyphicon glyphicon-star pull-right"%>
-        <% else %>
-        <%= link_to "",important_note_path(note.id),class: "glyphicon glyphicon-star-empty pull-right"%>
-        <% end %><br>
-        <%= link_to "Edit", edit_note_path(note.id),remote: true,'data-no-turbolink' => true %>|
-        <%= link_to "Show", note_path(note.id), remote:true%>|
-        <%= link_to "Delete", note_delete_path(note), remote:true %><br>
-        <span class="pull-right" style="font-size:12px;"><% note.tag_list.each do |tag| %>
-          <u><%= link_to tag, tagged_notes_path(tag: tag) ,remote:true %></u>
-          <% end %></span></td>
-        </tr>
-        <% end %>
-        <tbody>
-        </table>
-<% end %>
+  <% if @notes.empty? %>
+    <h5>No notes found matching your query.</h5>
+  <% else %>
+    <table class="table table-bordered table-stripped ">
+        <thead>
+          <tr>
+            <th colspan="2"><center>Note</center></th>
+          </tr>
+        </thead>
+        <tbody class="search-form">
+         <% @notes.each do |note| %>
+            <tr>
+              <td>
+                <%= link_to note.title,note_path(note.id),remote:true%>
+                <% if note.important%>
+                  <%= link_to "",unimportant_note_path(note.id),
+                  class: "glyphicon glyphicon-star pull-right"%>
+                <% else %>
+                  <%= link_to "",important_note_path(note.id),
+                  class: "glyphicon glyphicon-star-empty pull-right"%>
+                <% end %><br>
+                <%= link_to "Edit", edit_note_path(note),remote: true,
+                 class: "glyphicon glyphicon-edit" %>|
+                <%= link_to "Show", note_path(note), remote:true,
+                   class: "	glyphicon glyphicon-expand"%>|
+                <%= link_to "Delete", delete_note_path(note), remote:true,
+                  class: "glyphicon glyphicon-trash" %>|
+                <%= link_to "Share", new_note_sharenote_path(note), remote:true,
+                   class: "glyphicon glyphicon-share"%><br>
+                  <span class="pull-right" style="font-size:12px;">
+                    <% note.tag_list.each do |tag| %>
+                      <u><%= link_to tag, tagged_notes_path(tag: tag) ,
+                        remote:true %></u>
+                    <% end %>
+                  </span>
+              </td>
+            </tr>
+          <% end %>
+       <tbody>
+    </table>
+  <% end %>
 <% end %>

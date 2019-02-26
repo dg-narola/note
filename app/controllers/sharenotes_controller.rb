@@ -1,15 +1,30 @@
 class SharenotesController < ApplicationController
   before_action :authenticate_user!
+
+    #
+    ##to get the notes shared to a particular use
+    #
+
   def index
     #@sharenotes = Sharenote.all.joins(:note).where(email: current_user.email).where(notes: {status: false})
-    @sharenotes = Sharenote.all.includes(:note).where(email: current_user.email).where(notes: {status: false})
+    @sharenotes = Sharenote.all.includes(:note).where(
+      email: current_user.email).where(notes: {status: false})
     #render plain: @sharenotes.inspect
   end
 
+    #
+    ##to get the notes shared by a particular use
+    #
+
   def shownote
-    @sharednotes = Sharenote.all.includes(:note).where(user_id: current_user.id).where(notes: {status: false})
-    #@sharednotes = Sharenote.all.joins(:note).where(user_id: current_user.id).where(notes: {status: false})
+    #@sharednotes = Sharenote.all.includes(:note).where(user_id: current_user.id).where(notes: {status: false})
+    @sharednotes = Sharenote.all.joins(:note).where(
+      user_id: current_user.id).where(notes: {status: false})
   end
+
+    #
+    ##to send email for sharing notes
+    #
 
   def new
     @sharenote = Sharenote.new
@@ -30,6 +45,10 @@ class SharenotesController < ApplicationController
     redirect_to notes_path
   end
 
+    #
+    ##to send email to a user for edit permission
+    #
+
   def editaccess
     @note = Note.find(params[:id])
     #render plain: @note.inspect
@@ -40,13 +59,22 @@ class SharenotesController < ApplicationController
     #redirect_to notes_path
   end
 
+    #
+    ##to update the edit permission in database
+    #
+
   def updatepermission
     @note = Note.find(params[:id])
-    @sharenote = Sharenote.where(note_id: @note )
-    #render plain: @sharenote.inspect
+    #@sharenotes = @note.sharenotes.where(note_id: @note)
+    @sharenote = Sharenote.where(id: @note )
     @sharenote.update(edit: true)
+    #render plain: @sharenote.inspect
     redirect_to notes_path
   end
+
+    #
+    ##parameters
+    #
 
   private
   def sharenote_params

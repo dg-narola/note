@@ -1,19 +1,35 @@
 class CommentsController < ApplicationController
+
+    #
+    ##creating new comments
+    #
+
   def new
-      @comment = Comment.new
-      @note = Note.find(params[:note_id])
+    @comment = Comment.new
+    @note = Note.find(params[:note_id])
   end
+
   def create
     @note = Note.find(params[:note_id])
     @comment = @note.comments.create(comment_params)
     redirect_to notes_path(@note)
   end
+
+    #
+    ##deleting notes
+    #
+
   def destroy
     @note = Note.find(params[:note_id])
     @comment = @note.comments.find(params[:id])
     @comment.destroy
     redirect_to notes_path(@note)
   end
+
+    #
+    ##editing notes
+    #
+
   def edit
     @note = Note.find(params[:note_id])
     @comment = @note.comments.find(params[:id])
@@ -28,9 +44,12 @@ class CommentsController < ApplicationController
     redirect_to notes_path(@note)
   end
 
+    #
+    ##parameters
+    #
 
   private
-    def comment_params
-      params.require(:comment).permit(:comment, :user_id)
-    end
+  def comment_params
+    params.require(:comment).permit(:comment, :user_id)
+  end
 end

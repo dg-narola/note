@@ -1,4 +1,4 @@
-<%#   render plain: @sharenotes.inspect %>
+<%# render plain: @sharenotes.inspect %>
 <%# render plain:@noteid.inspect %>
 <div class="modal-dialog">
   <div class="modal-content">
@@ -12,23 +12,24 @@
             <th>Title</th>
             <th>Description</th>
             <th>SharedTo</th>
-            <th>Action</th>
+            <th><center>Actions</center></th>
           </tr>
         </thead>
         <tbody class="note-index">
           <% @sharednotes.each do |note| %>
-          <tr>
-            <td><%= note.note.title %></td>
-            <td><%= raw note.note.description %></td>
-            <td><%= note.try(:user).try(:username) %></td>
-            <td><%= link_to "Show", note_path(note), remote:true,class: "btn btn-primary"%></td>
-          </tr>
+            <tr>
+              <td><%= note.note.title %></td>
+              <td><%= raw note.note.description %></td>
+              <td><%= note.try(:user).try(:username) %></td>
+              <td><%= link_to "Show", note_path(note), remote:true,
+                class: "btn btn-primary"%></td>
+            </tr>
           <% end %>
         </tbody>
       </table>
     </div>
     <div class="modal-footer">
-      <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+      <%= link_to "Cancel", "#", class: "btn btn-danger", data: {dismiss: "modal"} %>
     </div>
   </div>
 </div>
