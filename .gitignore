@@ -1,6 +1,7 @@
 .rvmrc
 config/database.yml
 db/schema.rb
+Gemfile.lock
 .DS_Store
 /tmp
 /storage/uploads
