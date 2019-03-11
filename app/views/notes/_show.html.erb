@@ -1,37 +1,44 @@
 <div class="pull-right">
-  <%= link_to "NewComment", new_note_comment_path(@note, @comment), remote: true , class: "btn btn-primary pull-right glyphicon glyphicon-comment" %>
+  <%= link_to "NewComment", new_note_comment_path(note, comment), remote: true ,
+      class: "btn btn-primary pull-right glyphicon glyphicon-comment" %>
 </div>
 
-      <h3>Note</h3>
-      <p><strong>Tags:</strong>
-        <%# raw @note.tag_list.map { |t| link_to t, tagged_notes_path(t) }.join(', ') %>
-        <%= @note.tag_list %>
-      </p>
-      <p>
-        <strong>Title:</strong>
-        <%= @note.title %>
-      </p>
-      <p>
-        <strong>Description:</strong>
-        <%= raw @note.description %>
-      </p>
-      <div id="new-form" class="modal fade"></div>
-      <div id="comm-form" class="modal fade"></div>
+<h3>Note</h3>
+<p>
+  <strong>Tags:</strong>
+  <%# raw note.tag_list.map { |t| link_to t, tagged_notes_path(t) }.join(', ') %>
+  <%= note.tag_list %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= note.title %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= raw note.description %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= number_to_currency(note.price) %>
+</p>
+<div id="new-form" class="modal fade"></div>
+<div id="comm-form" class="modal fade"></div>
 
-      <h2>Comments</h2>
-      <%= render 'comments/index'%>
-      <div align="center" class="links">
-            <%= will_paginate @comments %>
-      </div>
+<h2>Comments</h2>
+<%= render 'comments/index', comments: comments%>
+<div align="center" class="links">
+  <%= will_paginate comments %>
+</div>
 
-      <div class="modal-footer">
-        <%# link_to "Add comment", new_note_comment_path(@note),remote: true, class: "btn btn-primary" %>
-        <%= link_to "Cancel","#", class: "btn btn-danger",
-          data: { dismiss: "modal" } %>
-      </div>
-      <script type="text/javascript">
-        $(function()
-        {
-          $('.links a').attr('data-remote', 'true')
-        });
-      </script>
+<div class="modal-footer">
+  <%# link_to "Add comment", new_note_comment_path(@note),remote: true, class: "btn btn-primary" %>
+  <%= link_to "Cancel","#", class: "btn btn-danger",
+  data: { dismiss: "modal" } %>
+</div>
+
+<script type="text/javascript">
+  $(function()
+  {
+    $('.links a').attr('data-remote', 'true')
+  });
+</script>

@@ -1,3 +1,4 @@
-$("#edit-form").html("<%= escape_javascript(render 'show')%>");
-$("#index-form").modal("hide")
-$("#show-form").modal("hide")
+$("#edit-form").html("<%= escape_javascript(render 'show', note: @note, comments: @comments, comment: @comment )%>");
+$("#index-form").modal("hide");
+$("#show-form").modal("hide");
+$("#tag-form").modal("hide")

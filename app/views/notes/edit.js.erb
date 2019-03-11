@@ -1,3 +1,4 @@
-$("#note-modal").html("<%= escape_javascript(render 'edit')%>");
+$("#note-modal").html("<%= escape_javascript(render 'edit', note: @note)%>");
 $("#note-modal").modal("show");
-$("#index-form").modal("hide")
+$("#index-form").modal("hide");
+$("#tag-form").modal("hide")

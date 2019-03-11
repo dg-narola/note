@@ -12,16 +12,17 @@
             <th>Title</th>
             <th>Description</th>
             <th>SharedBy</th>
-            <th colspan="2"><center>Actions</center></th>
+            <th colspan="3"><center>Actions</center></th>
           </tr>
         </thead>
         <tbody class="note-index">
-          <% @sharenotes.each do |note| %>
+          <% sharenotes.each do |note| %>
             <tr>
               <td><%= note.note.title %></td>
               <td><%= raw note.note.description %></td>
               <td><%= note.try(:user).try(:username) %></td>
-              <td><%= link_to "Show", note_path(note), remote:true,class: "btn btn-primary glyphicon glyphicon-expand"%></td>
+              <td><%= link_to "Show", note_path(note), remote:true,
+                      class: "btn btn-primary glyphicon glyphicon-expand"%></td>
               <td>
                 <% if note.edit == true %>
                   <%= link_to "Edit", edit_note_path(note),remote: true,

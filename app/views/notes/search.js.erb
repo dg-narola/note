@@ -1,2 +1,2 @@
-$("#search-form").html("<%= escape_javascript(render 'search')%>");
+$("#search-form").html("<%= escape_javascript(render 'search', notes: @notes)%>");
 $(".note-index").hide()

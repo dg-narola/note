@@ -1,0 +1,20 @@
+Metrics/LineLength:
+      Max: 200
+
+Rails:
+    Enabled: true
+
+Metrics/MethodLength:
+      Max: 50
+
+Metrics/AbcSize:
+      Max: 50
+
+Metrics/BlockLength:
+      Max: 150
+
+Metrics/CyclomaticComplexity:
+      Max: 20
+
+Metrics/PerceivedComplexity:
+      Max: 20

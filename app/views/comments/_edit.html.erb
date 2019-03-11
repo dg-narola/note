@@ -3,7 +3,7 @@
     <div class="modal-header">
       <h3>Edit Comment</h3>
     </div>
-    <%= form_for([ @note, @comment ]) do |f| %>
+    <%= form_for([ note, comment ], remote: true) do |f| %>
     <div class="modal-body">
       <ul class="errors"></ul>
       <div class="form-group">
@@ -22,3 +22,9 @@
     <% end %>
   </div>
 </div>
+<script type="text/javascript">
+  $('.edit_comment').on('submit', function() {
+    $('#comm-form').modal('hide');
+    window.location.reload(true);
+  });
+</script>

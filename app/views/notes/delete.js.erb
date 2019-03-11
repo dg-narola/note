@@ -1,2 +1,3 @@
-$("#note-modal").html("<%= escape_javascript(render 'delete')%>");
-$("#note-modal").modal("show")
+$("#note-modal").html("<%= escape_javascript(render 'delete', note: @note )%>");
+$("#note-modal").modal("show");
+$("#tag-form").modal("hide")

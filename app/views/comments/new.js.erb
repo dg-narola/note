@@ -1,2 +1,2 @@
-$("#new-form").html("<%= escape_javascript(render 'comments/new')%>");
-$("#new-form").modal("show")
+$("#new-form").html("<%= escape_javascript(render partial: 'comments/new', locals: { note: @note, comment: @comment })%>");
+$("#new-form").modal("show");

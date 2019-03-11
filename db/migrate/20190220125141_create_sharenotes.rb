@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Sharenotes migration
 class CreateSharenotes < ActiveRecord::Migration[5.2]
   def change
     create_table :sharenotes do |t|

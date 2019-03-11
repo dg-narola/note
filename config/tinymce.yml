@@ -1,5 +1,7 @@
 toolbar:
-  - styleselect | undo redo | formatselect | bold italic backcolor forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help
+  - styleselect | undo redo | formatselect | bold italic backcolor forecolor |
+    alignleft aligncenter alignright alignjustify | bullist numlist outdent indent
+    | removeformat | help
   - image | link
 plugins:
   - image

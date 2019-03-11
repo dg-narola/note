@@ -17,3 +17,4 @@
 //= require turbolinks
 //= require tinymce
 //= require_tree .
+//= stub active_admin

@@ -1,0 +1,2 @@
+$("#charge-form").html("<%= escape_javascript(render partial: 'charges/new', locals: { note: @note })%>");
+$("#charge-form").modal("show");

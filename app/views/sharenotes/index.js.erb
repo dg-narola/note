@@ -1,2 +1,2 @@
-$("#index-form").html("<%= escape_javascript(render 'sharenotes/index')%>");
+$("#index-form").html("<%= escape_javascript(render partial: 'sharenotes/index',locals: { sharenotes: @sharenotes})%>");
 $("#index-form").modal("show")

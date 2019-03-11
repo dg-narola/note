@@ -1,2 +1,2 @@
-$("#show-form").html("<%= escape_javascript(render 'sharenotes/shownote')%>");
+$("#show-form").html("<%= escape_javascript(render partial: 'sharenotes/shownote', locals: { sharednotes:@sharednotes})%>");
 $("#show-form").modal("show")

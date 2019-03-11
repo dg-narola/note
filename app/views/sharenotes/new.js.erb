@@ -1,2 +1,2 @@
-$("#share-form").html("<%= escape_javascript(render 'sharenotes/new')%>");
+$("#share-form").html("<%= escape_javascript(render partial:'sharenotes/new',locals: { note: @note, sharenote: @sharenote })%>");
 $("#share-form").modal("show")

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from acts_as_taggable_on_engine (originally 3)
 if ActiveRecord.gem_version >= Gem::Version.new('5.0')
   class AddTaggingsCounterCacheToTags < ActiveRecord::Migration[4.2]; end
@@ -7,10 +9,11 @@ end
 AddTaggingsCounterCacheToTags.class_eval do
   def self.up
     add_column :tags, :taggings_count, :integer, default: 0
-
-    ActsAsTaggableOn::Tag.reset_column_information
-    ActsAsTaggableOn::Tag.find_each do |tag|
-      ActsAsTaggableOn::Tag.reset_counters(tag.id, :taggings)
+    say_with_time('Taggings count') do
+      ActsAsTaggableOn::Tag.reset_column_information
+      ActsAsTaggableOn::Tag.find_each do |tag|
+        ActsAsTaggableOn::Tag.reset_counters(tag.id, :taggings)
+      end
     end
   end
 

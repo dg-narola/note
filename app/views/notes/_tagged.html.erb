@@ -9,6 +9,7 @@
           <tr>
             <th>Title</th>
             <th>Description</th>
+            <th>Price</th>
              <th>Tag</th>
             <th></th>
             <th></th>
@@ -16,14 +17,15 @@
           </tr>
         </thead>
         <tbody class="note-index">
-          <% @notes.each do |note| %>
+          <% notes.each do |note| %>
             <tr>
               <td><%= note.title %></td>
               <td><%= raw note.description %></td>
+              <td><%= note.price %></td>
               <td><%= note.tag_list %></td>
               <td><%= link_to "Edit", edit_note_path(note),remote: true %></td>
-              <td><%= link_to "Add Comment", note_path(note), remote:true%></td>|
-              <td><%= link_to "Delete", note_delete_path(note), remote:true %></td>
+              <td><%= link_to "Add Comment", note_path(note), remote:true%></td>
+              <td><%= link_to "Delete", delete_note_path(note), remote:true %></td>
             </tr>
           <% end %>
         </tbody>

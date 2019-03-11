@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  amount: 9.99
+  payed: false
+  refund: false
+  note: one
+  user: one
+
+two:
+  email: MyString
+  amount: 9.99
+  payed: false
+  refund: false
+  note: two
+  user: two

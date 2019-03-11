@@ -1,0 +1,28 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Payment</h3>
+    </div>
+    <%= form_for note,url: note_charges_path,method: :post,remote: true do |f|%>
+    <div class="modal-body">
+      <ul class="errors">
+         <% if flash[:error].present? %>
+          <div id="error_explanation">
+            <p><%= flash[:error] %></p>
+          </div>
+        <% end %></ul>
+      <div class="form-group">
+        <%= f.label :Amount , class:"control-label" %>
+        <span>Amount: <%= @note.price %></span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="A month's subscription"
+              data-amount="<%= @note.price %>"
+              data-locale="auto"></script>
+    </div>
+    <% end %>
+  </div>
+</div>

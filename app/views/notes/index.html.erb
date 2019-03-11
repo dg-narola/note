@@ -11,7 +11,7 @@
 <div class="col-md-3" style="height: 500px; overflow-y: scroll;">
   <div class="container-fluid">
     <div class="new-note"></div>
-        <%= render "side" %>
+        <%= render "side", notes: @notes %>
     <div id="note-modal" class="modal fade"></div>
     <div id="search-form">  </div>
   </div>
@@ -23,4 +23,6 @@
   <div id="share-form" class="modal fade"></div>
   <div id="index-form" class="modal fade"></div>
   <div id="show-form" class="modal fade"></div>
+  <div id="charge-form" class="modal fade"></div>
+  <div id="sucess-form" class="modal fade"></div>
 </div>
